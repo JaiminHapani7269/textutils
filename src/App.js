@@ -1,8 +1,12 @@
 import { useState } from "react";
 import "./App.css";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
+
+
+
 
 function App() {
   const [mode, setDarkMode] = useState("light");
@@ -35,11 +39,8 @@ function App() {
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
       <div className="container">
-        <TextForm
-          heading="Enter The Text To Analyze Below"
-          mode={mode}
-          showAlert={showAlert}
-        />
+
+            <TextForm heading="Enter The Text To Analyze Below" mode={mode} showAlert={showAlert} />
       </div>
     </>
   );
