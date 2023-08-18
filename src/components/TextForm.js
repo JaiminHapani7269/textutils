@@ -50,17 +50,17 @@ export default function TextForm(props) {
           rows="10"
         ></textarea>
       </div>
-      <button className={`btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleUpClick}>
+      <button className={`my-3 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleUpClick}>
         Convert to UpperCase
       </button>
-      <button className={`btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleLwClick}>
+      <button className={`my-3 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleLwClick}>
         Convert to LowerCase
       </button>
-      <button className={`btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleCopy}>
+      <button className={`my-3 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleCopy}>
         Copy to Clipboard
       </button>
       <button
-        className={`btn btn-${props.mode==="light"?"primary":"dark"} mx-2`}
+        className={`my-3 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`}
         onClick={handleClearClick}
       >
         Clear Text
