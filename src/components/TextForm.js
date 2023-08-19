@@ -25,10 +25,8 @@ export default function TextForm(props) {
   };
 
   const handleCopy =() =>{
-    var text = document.getElementById("myBox");
-    text.select();
-    text.setSelectionRange(0,99999);
-    navigator.clipboard.writeText(text.value);
+    navigator.clipboard.writeText(text);
+    // document.getSelection().removeAllRanges();
     props.showAlert(" Copied to clipboard!","success");
   };
 
@@ -39,27 +37,29 @@ export default function TextForm(props) {
   return (
     <>
       <div className="my-3 mb-3">
-        <h1 className={`p-1 bg-opacity-10 text-${props.mode==='light'?'dark':'light'}`}>
+        <h1 className={`mb-4 p-1 bg-opacity-10 text-${props.mode==='light'?'dark':'light'}`}>
           {props.heading}
         </h1>
         <textarea
-          className={`form-control ${props.mode==='light'? `bg-light`: `bg-secondary`}`}
+          className="form-control"
+          style={{backgroundColor: props.mode=== 'dark'?'#3a3645':'white',color:props.mode==='dark'?'white':'#042743'}}
           value={text}
           onChange={handleOnChange}
           id="myBox"
           rows="10"
         ></textarea>
       </div>
-      <button className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleUpClick}>
+      <button disabled={text.length===0} className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleUpClick}>
         Convert to UpperCase
       </button>
-      <button className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleLwClick}>
+      <button disabled={text.length===0} className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleLwClick}>
         Convert to LowerCase
       </button>
-      <button className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleCopy}>
+      <button disabled={text.length===0} className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`} onClick={handleCopy}>
         Copy to Clipboard
       </button>
       <button
+      disabled={text.length===0}
         className={`my-1 btn btn-${props.mode==="light"?"primary":"dark"} mx-2`}
         onClick={handleClearClick}
       >
@@ -70,11 +70,11 @@ export default function TextForm(props) {
           Your Text Summary
         </h1>
         <p className={`text-${props.mode==='light'?'dark':'light'}`}>
-          <b>{text.split(" ").length - 1}</b> Words and <b>{text.length}</b>{" "}
+          <b>{text.split(/\s+/).filter((ele)=>{return ele.length!==0}).length}</b> Words and <b>{text.length}</b>{" "}
           Characters
         </p>
         <p className={`text-${props.mode==='light'?'dark':'light'}`}>
-          <b>{0.008 * (text.split(" ").length - 1)}</b> Minutes take to read
+          <b>{0.008 * (text.split(" ").filter((ele)=>{return ele.length!==0}).length)}</b> Minutes take to read
         </p>
       </div>
     </>
